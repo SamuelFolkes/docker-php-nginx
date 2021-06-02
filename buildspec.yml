@@ -34,10 +34,7 @@ phases:
     - docker push 821544819729.dkr.ecr.us-east-1.amazonaws.com/php-nginx-app:$IMAGE_TAG
     - echo Writing image definitions file... 
     - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
-    - ContainerName="php-demo-app"
-    - printf '[{"name":"CONTAINER_NAME","imageUri":"IMAGE_URI"}]' > imagedefinitions.json
-    - sed -i -e "s|CONTAINER_NAME|$ContainerName|g" imagedefinitions.json
-    - sed -i -e "s|IMAGE_URI|$ImageURI|g" imagedefinitions.json
+    - printf '[{"name":"php-demo-app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
     - cat imagedefinitions.json
 
 artifacts:
